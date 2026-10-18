@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Battle Tense</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main id="landing" class="wrap">
+  <div class="hero">
+    <h1>BATTLE<br>TENSE</h1>
+    <p>Duel kesatria pixel untuk latihan simple present tense. Dua kelompok, dua perangkat, satu layar guru.</p>
+  </div>
+  <div class="rules" aria-label="Aturan damage">
+    <div class="rule"><b style="color:var(--ok)">5%</b>Soal mudah</div>
+    <div class="rule"><b style="color:var(--warn)">10%</b>Soal sedang</div>
+    <div class="rule"><b style="color:var(--bad)">20%</b>Soal sulit</div>
+  </div>
+  <div class="land">
+    <section class="card">
+      <h2>Guru (penonton)</h2>
+      <p>Buat pertandingan baru. Layar ini ditampilkan di proyektor dan mengatur jalannya game.</p>
+      <button class="btn gold" id="btnHost" type="button">Buat game</button>
+    </section>
+    <section class="card">
+      <h2>Gabung sebagai kelompok</h2>
+      <div class="field"><label for="inCode">Kode game</label><input id="inCode" maxlength="4" autocomplete="off" autocapitalize="characters" placeholder="ABCD"></div>
+      <div class="field"><label for="inName">Nama kelompok (opsional)</label><input id="inName" maxlength="18" autocomplete="off" placeholder="Contoh: Singa Biru"></div>
+      <div class="row">
+        <button class="btn a" id="btnA" type="button">Kelompok A</button>
+        <button class="btn b" id="btnB" type="button">Kelompok B</button>
+      </div>
+    </section>
+  </div>
+  <div class="err center" id="err" role="alert"></div>
+</main>
+
+<main id="game" class="wrap" hidden>
+  <header class="top">
+    <span class="chip" id="who">-</span>
+    <div class="tools">
+      <span class="chip off" id="conn" hidden>Terputus</span>
+      <button class="btn sm ghost" id="btnMute" type="button">Suara: ON</button>
+      <button class="btn sm ghost" id="btnLeave" type="button">Keluar</button>
+    </div>
+  </header>
+  <section class="arena" id="arena" aria-label="Arena pertarungan">
+    <canvas class="bg" id="cvBg" width="128" height="64"></canvas>
+    <div class="hud">
+      <div class="side sA"><div class="nm"><i class="dot" id="dotA"></i><span id="nmA">Kelompok A</span></div><div class="bar"><div class="ghost" id="gA"></div><div class="fill" id="fA"></div></div><div class="hpn" id="hA">HP 100%</div></div>
+      <div class="vs">VS</div>
+      <div class="side sB"><div class="nm"><span id="nmB">Kelompok B</span><i class="dot" id="dotB"></i></div><div class="bar"><div class="ghost" id="gB"></div><div class="fill" id="fB"></div></div><div class="hpn" id="hB">HP 100%</div></div>
+    </div>
+    <div class="fighter fA"><div class="bob"><canvas id="cvA" width="16" height="19"></canvas></div></div>
+    <div class="fighter fB"><div class="bob"><canvas id="cvB" width="16" height="19"></canvas></div></div>
+    <div class="fx" id="fx"></div>
+    <div class="banner" id="banner"><b id="bnT"></b><span id="bnS"></span></div>
+  </section>
+  <section class="panel" id="panel" aria-live="polite"></section>
+  <footer class="ctl" id="ctl"></footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/mqtt@5.10.1/dist/mqtt.min.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/net.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
