@@ -88,7 +88,7 @@ function teamInfo(i){for(var k=0;k<peers.length;k++){var p=peers[k];if(p.isMe)co
 
 /* ---------- host: logika game ---------- */
 function save(){try{sessionStorage.setItem('bt_host_'+code,JSON.stringify(st))}catch(e){}}
-function publish(){st.v++;save();if(room)room.presence({st:JSON.parse(JSON.stringify(st))}).catch(function(){})}
+function publish(){st.v++;save();if(room)room.presence({role:'host',st:JSON.parse(JSON.stringify(st))}).catch(function(){})}
 function startGame(keepNm){clearTimeout(timer);var nm=keepNm||st.nm;st=freshState(nm);st.ph='q';st.n=1;publish();SFX.next()}
 function nextRound(){clearTimeout(timer);st.pos++;if(st.pos>=st.deck.length){st.deck=shuffle(QS.map(function(_,i){return i}));st.pos=0}
   st.q=st.deck[st.pos];st.r++;st.n++;st.lk=[0,0];st.at=-1;st.dm=0;st.ph='q';publish();SFX.next()}
